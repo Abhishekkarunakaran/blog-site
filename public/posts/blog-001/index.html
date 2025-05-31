@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>How I Released a Weekend Go Project Within Minutes. | Abhishek&#39;s Blog</title>
+<meta name="keywords" content="">
+<meta name="description" content="
+disclaimer :
+This is not a tutorial. It&rsquo;s just a story how I released a project within minutes.
+Intro.
+Let me set the context first. While working on my day job, I ran into a simple need: converting a UUID to base64. I searched for online tools, but none of them did exactly what I wanted.
+
+Note:
+Yeah, I know now—you can just use a simple terminal command:
+
+But at the time, I needed a quick solution. So, I wrote a small Go script to convert a UUID to base64:">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/posts/blog-001/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.f49d66caae9ea0fd43f21f29e71a8d3e284517ed770f2aa86fa012953ad3c9ef.css" integrity="sha256-9J1myq6eoP1D8h8p5xqNPihFF&#43;13Dyqob6ASlTrTye8=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/blog-001/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Abhishek&#39;s Blog (Alt + H)">Abhishek&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      How I Released a Weekend Go Project Within Minutes.
+    </h1>
+    <div class="post-meta"><span title='2025-05-30 23:40:27 +0530 IST'>May 30, 2025</span>&nbsp;·&nbsp;4 min
+
+</div>
+  </header> 
+  <div class="post-content"><blockquote>
+<p>disclaimer :
+This is not a tutorial. It&rsquo;s just a <code>story</code> how I released a project within minutes.</p></blockquote>
+<h2 id="intro">Intro.<a hidden class="anchor" aria-hidden="true" href="#intro">#</a></h2>
+<p>Let me set the context first. While working on my day job, I ran into a simple need: converting a <code>UUID</code> to <code>base64</code>. I searched for online tools, but none of them did exactly what I wanted.</p>
+<blockquote>
+<p>Note:
+Yeah, I know now—you can just use a simple terminal command:
+<img loading="lazy" src="/blog-001/terminal.png"></p></blockquote>
+<p>But at the time, I needed a quick solution. So, I wrote a small Go script to convert a <code>UUID</code> to <code>base64</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> (
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;encoding/base64&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;fmt&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;os&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;github.com/gofrs/uuid&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">uuidString</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Args</span>[<span style="color:#ae81ff">1</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">uuidVal</span>,<span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">uuid</span>.<span style="color:#a6e22e">FromString</span>(<span style="color:#a6e22e">uuidString</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">err</span>.<span style="color:#a6e22e">Error</span>())
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span>
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">b64</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">base64</span>.<span style="color:#a6e22e">StdEncoding</span>.<span style="color:#a6e22e">EncodeToString</span>(<span style="color:#a6e22e">uuidVal</span>.<span style="color:#a6e22e">Bytes</span>())
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;base64: %s&#34;</span>,<span style="color:#a6e22e">b64</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>output:
+<img alt="output" loading="lazy" src="/blog-001/out.png"></p>
+<p>Then it hit me,<i> &ldquo;What not turn this into a TUI app?&quot;</i>. At the time, I was exploring <a href="https://github.com/charmbracelet/bubbletea" target=_blank>bubbletea</a> for a side project.</p>
+<p>The project was done in 24 hours—it didn’t take much effort. Here&rsquo;s the project: <a href="https://github.com/Abhishekkarunakaran/ub2" target=_blank>ub2</a>.</p>
+<p>Since I needed it on my work laptop and it&rsquo;s a terminal app, using <code>go install</code> was the better choice.</p>
+<p>And that brought me to the real question: &ldquo;How do I release this properly?&rdquo;</p>
+<h2 id="goreleaser">Goreleaser<a hidden class="anchor" aria-hidden="true" href="#goreleaser">#</a></h2>
+<p>I did a quick google search, and <a href=https://goreleaser.com target=_blank>goreleaser</a> popped up.</p>
+<p>It&rsquo;s pretty interesting: A cli app that helps you to release your <code>Go</code>,<code>Zig</code>,<code>Rust</code>,<code>Python</code> and<code>Typescript</code> projects.</p>
+<h3 id="how-to-start-">How to start ?<a hidden class="anchor" aria-hidden="true" href="#how-to-start-">#</a></h3>
+<p>After installing the <code>goreleaser</code>, cd into your project directly and use the following command :
+<img alt="init" loading="lazy" src="/blog-001/init.png"></p>
+<p>A <code>.goreleaser.yaml</code> file is created in the root directory.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># This is an example .goreleaser.yml file with some sensible defaults.</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Make sure to check the documentation at https://goreleaser.com</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># The lines below are called `modelines`. See `:help modeline`</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Feel free to remove those if you don&#39;t want/need to use them.</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># yaml-language-server: $schema=https://goreleaser.com/static/schema.json</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># vim: set ts=2 sw=2 tw=0 fo=cnqoj</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">version</span>: <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">before</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">hooks</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># You may remove this if you don&#39;t use go modules.</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">go mod tidy</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># you may remove this if you don&#39;t need go generate</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">go generate ./...</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">builds</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">env</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">CGO_ENABLED=0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">goos</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">linux</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">windows</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">darwin</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">archives</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">formats</span>: [<span style="color:#ae81ff">tar.gz]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># this name template makes the OS and Arch compatible with the results of `uname`.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">name_template</span>: &gt;-<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      {{ .ProjectName }}_
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      {{- title .Os }}_
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      {{- if eq .Arch &#34;amd64&#34; }}x86_64
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      {{- else if eq .Arch &#34;386&#34; }}i386
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      {{- else }}{{ .Arch }}{{ end }}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      {{- if .Arm }}v{{ .Arm }}{{ end }}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># use zip for windows archives</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">format_overrides</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">goos</span>: <span style="color:#ae81ff">windows</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">formats</span>: [<span style="color:#ae81ff">zip]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">changelog</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">sort</span>: <span style="color:#ae81ff">asc</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">filters</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">exclude</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;^docs:&#34;</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;^test:&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">release</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">footer</span>: <span style="color:#ae81ff">&gt;-</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    ---
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">Released by [GoReleaser](https://github.com/goreleaser/goreleaser).</span>
+</span></span></code></pre></div><p>This file is enough for the release if the goal is simply install the project using <code>go install</code>.</p>
+<p>Now we need <code>GITHUB_TOKEN</code> and <code>tag</code>.</p>
+<h4 id="github-token"><strong>Github Token:</strong><a hidden class="anchor" aria-hidden="true" href="#github-token">#</a></h4>
+<p>For generating token from github, you can refer <a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens" target="_blank">this guide</a>.</p>
+<p><strong>Step 1: Store the Token</strong> <br>
+Create a <code>.env.sh</code> file to store the token using this format:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>export GITHUB_TOKEN<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&lt;github.token&gt;&#34;</span>
+</span></span></code></pre></div><blockquote>
+<p>Note : Treat the token like a password &ndash; Do not share it! <br>
+If<code>.env.sh</code> is in the root directory, make sure to add it to <code>.gitignore</code> to avoid accidentally committing it.</p></blockquote>
+<p><strong>Step 2: Using the Token</strong><br>
+You can use this github token two ways:</p>
+<ol>
+<li><strong>Source the <code>.env.sh</code> file.</strong></li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>source .env.sh
+</span></span></code></pre></div><p>This makes the token available as an environment variable in the current terminal session. Any program running in this session can access it via <code>$GITHUB_TOKEN</code>.</p>
+<ol start="2">
+<li><strong>Add <code>env_file</code> in .goreleaser.yaml` file.</strong> <br></li>
+</ol>
+<p>Add this line to your <code>.goreleaser.yaml</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">env_files</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">github_token</span>: <span style="color:#ae81ff">./.env.sh</span>
+</span></span></code></pre></div><h4 id="tags"><strong>Tags:</strong><a hidden class="anchor" aria-hidden="true" href="#tags">#</a></h4>
+<p>Adding tag is pretty straight forward. After the first commit pushed to the remote ( here it is <code>github</code>).</p>
+<p><strong>Step 1:Create Tag</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>git tag -a v0.1.0 -m <span style="color:#e6db74">&#34;message&#34;</span>
+</span></span></code></pre></div><blockquote>
+<p>Definition:<br>
+For versioning, we normally uses this format :- <code>vx.y.z</code> <br>
+x : Major version ( For breaking changes ) <br>
+y : Minor version ( For backwards compatible changes ) <br>
+z : Patch version ( For bug fixes )</p></blockquote>
+<p><strong>Step 2:Push Tag to Remote</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>git push origin v0.1.0
+</span></span></code></pre></div><p>Once everything is set up, it all comes down to a single command.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>goreleaser release --clean
+</span></span></code></pre></div><p>That’s it!
+Your software is now out in the world!</p>
+<blockquote>
+<p>Note: <code>--clean</code> is used to delete the <code>dist</code> directory, where the builds exists. You can skip the flag for the first release.</p></blockquote>
+<p>You can find the released zip files in the <code>Releases</code> section in the your github repo screen.
+<img alt="releases" loading="lazy" src="/blog-001/releases.png"></p>
+<p><strong>Installing using go :</strong></p>
+<p>Now you can install the app using go by simpling using the command:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>go install github.com/Abhishekkarunakaran/ub2@latest
+</span></span></code></pre></div><p><code>goreleaser</code> even helped me set up a Homebrew tap so the tool can now be installed via brew—but that&rsquo;s a story for another post.</p>
+<h2 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
+<p>If you&rsquo;re building CLI tools in Go, <code>goreleaser</code> is a no-brainer. It turns your local script into a downloadable, installable project with almost zero overhead.</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="http://localhost:1313/">Abhishek&#39;s Blog</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

@@ -1,0 +1,9 @@
+baseURL = 'https://abhishekkk.in/'
+languageCode = 'en-us'
+title = "Abhishek's Blog"
+theme = 'papermod'
+[params] 
+showReadingTime = true
+showBreadcrumb = true
+[markup.goldmark.renderer]
+unsafe = true
