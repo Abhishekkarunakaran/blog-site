@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Abhishek&#39;s Blog</title>
-    <link>http://localhost:1313/</link>
-    <description>Recent content on Abhishek&#39;s Blog</description>
+    <title>Abhishek&#39;s Journal</title>
+    <link>http://localhost:36641/</link>
+    <description>Recent content on Abhishek&#39;s Journal</description>
     <generator>Hugo -- 0.147.2</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 30 May 2025 23:40:27 +0530</lastBuildDate>
-    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:36641/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>How I Released a Weekend Go Project Within Minutes.</title>
-      <link>http://localhost:1313/posts/blog-001/</link>
+      <link>http://localhost:36641/posts/blog-001/</link>
       <pubDate>Fri, 30 May 2025 23:40:27 +0530</pubDate>
-      <guid>http://localhost:1313/posts/blog-001/</guid>
+      <guid>http://localhost:36641/posts/blog-001/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;disclaimer :
 This is not a tutorial. It&amp;rsquo;s just a &lt;code&gt;story&lt;/code&gt; how I released a project within minutes.&lt;/p&gt;&lt;/blockquote&gt;
-&lt;h2 id=&#34;intro&#34;&gt;Intro.&lt;/h2&gt;
+&lt;h2 id=&#34;intro&#34;&gt;Intro&lt;span style=&#34;color:#87af5f&#34;&gt;.&lt;/span&gt;&lt;/h2&gt;
 &lt;p&gt;Let me set the context first. While working on my day job, I ran into a simple need: converting a &lt;code&gt;UUID&lt;/code&gt; to &lt;code&gt;base64&lt;/code&gt;. I searched for online tools, but none of them did exactly what I wanted.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Note:
 Yeah, I know now—you can just use a simple terminal command:
-&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/blog-001/terminal.png&#34;&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:36641/blog-001/terminal.png&#34;&gt;&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;But at the time, I needed a quick solution. So, I wrote a small Go script to convert a &lt;code&gt;UUID&lt;/code&gt; to &lt;code&gt;base64&lt;/code&gt;:&lt;/p&gt;</description>
     </item>
   </channel>

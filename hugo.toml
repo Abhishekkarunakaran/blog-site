@@ -1,9 +1,10 @@
 baseURL = 'https://blog.abhishekkk.in/'
 languageCode = 'en-us'
-title = "Abhishek's Blog"
+title = "Abhishek's Journal"
 theme = 'papermod'
 [params] 
 showReadingTime = true
 showBreadcrumb = true
+favicon = "favicon.ico"
 [markup.goldmark.renderer]
 unsafe = true

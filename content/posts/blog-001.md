@@ -6,7 +6,7 @@ title = 'How I Released a Weekend Go Project Within Minutes.'
 > disclaimer : 
 > This is not a tutorial. It's just a `story` how I released a project within minutes.
 
-## Intro.
+## Intro<span style="color:#87af5f">.</span>
 
 Let me set the context first. While working on my day job, I ran into a simple need: converting a `UUID` to `base64`. I searched for online tools, but none of them did exactly what I wanted.
 
@@ -50,7 +50,7 @@ Since I needed it on my work laptop and it's a terminal app, using `go install` 
 
 And that brought me to the real question: "How do I release this properly?"
 
-## Goreleaser 
+## Goreleaser<span style="color:#87af5f">.</span>
 
 I did a quick google search, and <a href=https://goreleaser.com target=_blank>goreleaser</a> popped up.
 
@@ -192,7 +192,7 @@ go install github.com/Abhishekkarunakaran/ub2@latest
 ```
 `goreleaser` even helped me set up a Homebrew tap so the tool can now be installed via brew—but that's a story for another post.
 
-## Conclusion
+## Conclusion<span style="color:#87af5f">.</span>
 
 If you're building CLI tools in Go, `goreleaser` is a no-brainer. It turns your local script into a downloadable, installable project with almost zero overhead.
 

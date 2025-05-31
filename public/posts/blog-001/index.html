@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=36641&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="noindex, nofollow">
-<title>How I Released a Weekend Go Project Within Minutes. | Abhishek&#39;s Blog</title>
+<title>How I Released a Weekend Go Project Within Minutes. | Abhishek&#39;s Journal</title>
 <meta name="keywords" content="">
 <meta name="description" content="
 disclaimer :
@@ -18,16 +18,16 @@ Yeah, I know now—you can just use a simple terminal command:
 
 But at the time, I needed a quick solution. So, I wrote a small Go script to convert a UUID to base64:">
 <meta name="author" content="">
-<link rel="canonical" href="http://localhost:1313/posts/blog-001/">
+<link rel="canonical" href="http://localhost:36641/posts/blog-001/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.f49d66caae9ea0fd43f21f29e71a8d3e284517ed770f2aa86fa012953ad3c9ef.css" integrity="sha256-9J1myq6eoP1D8h8p5xqNPihFF&#43;13Dyqob6ASlTrTye8=" rel="preload stylesheet" as="style">
-<link rel="icon" href="http://localhost:1313/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
-<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<link rel="icon" href="http://localhost:36641/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:36641/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:36641/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:36641/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:36641/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/blog-001/">
+<link rel="alternate" hreflang="en" href="http://localhost:36641/posts/blog-001/">
 <noscript>
     <style>
         #theme-toggle,
@@ -82,7 +82,7 @@ But at the time, I needed a quick solution. So, I wrote a small Go script to con
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://localhost:1313/" accesskey="h" title="Abhishek&#39;s Blog (Alt + H)">Abhishek&#39;s Blog</a>
+            <a href="http://localhost:36641/" accesskey="h" title="Abhishek&#39;s Journal (Alt + H)">Abhishek&#39;s Journal</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -125,7 +125,7 @@ But at the time, I needed a quick solution. So, I wrote a small Go script to con
   <div class="post-content"><blockquote>
 <p>disclaimer :
 This is not a tutorial. It&rsquo;s just a <code>story</code> how I released a project within minutes.</p></blockquote>
-<h2 id="intro">Intro.<a hidden class="anchor" aria-hidden="true" href="#intro">#</a></h2>
+<h2 id="intro">Intro<span style="color:#87af5f">.</span><a hidden class="anchor" aria-hidden="true" href="#intro">#</a></h2>
 <p>Let me set the context first. While working on my day job, I ran into a simple need: converting a <code>UUID</code> to <code>base64</code>. I searched for online tools, but none of them did exactly what I wanted.</p>
 <blockquote>
 <p>Note:
@@ -159,7 +159,7 @@ Yeah, I know now—you can just use a simple terminal command:
 <p>The project was done in 24 hours—it didn’t take much effort. Here&rsquo;s the project: <a href="https://github.com/Abhishekkarunakaran/ub2" target=_blank>ub2</a>.</p>
 <p>Since I needed it on my work laptop and it&rsquo;s a terminal app, using <code>go install</code> was the better choice.</p>
 <p>And that brought me to the real question: &ldquo;How do I release this properly?&rdquo;</p>
-<h2 id="goreleaser">Goreleaser<a hidden class="anchor" aria-hidden="true" href="#goreleaser">#</a></h2>
+<h2 id="goreleaser">Goreleaser<span style="color:#87af5f">.</span><a hidden class="anchor" aria-hidden="true" href="#goreleaser">#</a></h2>
 <p>I did a quick google search, and <a href=https://goreleaser.com target=_blank>goreleaser</a> popped up.</p>
 <p>It&rsquo;s pretty interesting: A cli app that helps you to release your <code>Go</code>,<code>Zig</code>,<code>Rust</code>,<code>Python</code> and<code>Typescript</code> projects.</p>
 <h3 id="how-to-start-">How to start ?<a hidden class="anchor" aria-hidden="true" href="#how-to-start-">#</a></h3>
@@ -266,7 +266,7 @@ Your software is now out in the world!</p>
 <p>Now you can install the app using go by simpling using the command:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>go install github.com/Abhishekkarunakaran/ub2@latest
 </span></span></code></pre></div><p><code>goreleaser</code> even helped me set up a Homebrew tap so the tool can now be installed via brew—but that&rsquo;s a story for another post.</p>
-<h2 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
+<h2 id="conclusion">Conclusion<span style="color:#87af5f">.</span><a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
 <p>If you&rsquo;re building CLI tools in Go, <code>goreleaser</code> is a no-brainer. It turns your local script into a downloadable, installable project with almost zero overhead.</p>
 
 
@@ -280,7 +280,7 @@ Your software is now out in the world!</p>
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="http://localhost:1313/">Abhishek&#39;s Blog</a></span> · 
+        <span>&copy; 2025 <a href="http://localhost:36641/">Abhishek&#39;s Journal</a></span> · 
 
     <span>
         Powered by
